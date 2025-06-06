@@ -1,0 +1,20 @@
+{
+  "name": "first_project",
+  "version": "1.0.0",
+  "description": "learning",
+  "homepage": "https://github.com/Mohitkoley/node_learn#readme",
+  "bugs": {
+    "url": "https://github.com/Mohitkoley/node_learn/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mohitkoley/node_learn.git"
+  },
+  "license": "ISC",
+  "author": "Mohit",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
