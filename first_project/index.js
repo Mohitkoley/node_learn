@@ -23,3 +23,18 @@ var arrow = (name) => {
 
 
 arrow("Mohit");
+
+
+//callback
+
+var newFunc = (name, callBack) =>{
+    console.log(`name is ${name}`);
+    callBack();
+}
+
+function printName(){
+    console.log("My name is baba");
+}
+
+newFunc("Mohit",printName);
+
