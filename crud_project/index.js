@@ -43,7 +43,8 @@ app.delete("/todos/:id", (req, res) => {
     var id = parseInt(req.params.id);
     var todo = findTodoByID(id);
     exitIfTodoNotFound(todo, id, res);
-    todos = todos.filter((todo) => todo.id !== id);
+    var index = todos.indexOf(todo);
+    todos.splice(index, 1);
     res.json({
         "message": "todo deleted",
     });
