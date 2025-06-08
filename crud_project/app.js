@@ -1,7 +1,12 @@
+import { config } from 'dotenv';
 import express from 'express';
-
+import connectDb from './src/database/Mongo.database.js';
 import Todo from "./src/models/todo_model.js";
 
+// Configure the path to your env files
+config({
+  path: `./env/.${process.env.NODE_ENV}.env`
+});
 const app = express();
 
 var todos =[
@@ -87,7 +92,8 @@ app.post("/todos", (req, res) => {
     });
 });
 
-
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    connectDb();
+    console.log('Server is running on port '+ port);
 });
