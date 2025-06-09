@@ -3,6 +3,7 @@ import express from 'express';
 import connectDb from './src/database/Mongo.database.js';
 import router from './src/routes/apiRoutes.js';
 import cors from 'cors';
+import logger from "./src/middleware/logger.js"
 
 // Configure the path to your env files
 config({
@@ -19,6 +20,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(router)
+
+
+//logger
+app.use(logger);
 
 
 // app.get("/todos", (req, res) => {
