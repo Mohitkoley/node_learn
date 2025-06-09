@@ -18,12 +18,20 @@ const serviceGetAllNotesAsync = async () => {
 }
 
 const serviceGetNoteByIdAsync = async (id) => {
-    const note = Notes.findById(id);
+    const note = getNote(id);
+    return note;
+}
+
+function getNote(id) {
+    var note = Notes.findById(id);
+    if(!note){
+        throw {status: 404, message: "Note not found"};
+    }
     return note;
 }
 
 const serviceUpdateNoteByIdAsync = async (id, title, content) => {
-    const note = Notes.findById(id);
+    const note = getNote(id);
     note.title = title;
     note.content = content;
     await note.save();
@@ -31,7 +39,7 @@ const serviceUpdateNoteByIdAsync = async (id, title, content) => {
 }
 
 const serviceDeleteNoteByIdAsync = async (id) => {
-    const note = Notes.findById(id);
+    const note = getNote(id);
     await note.deleteOne();
     return note;
 }
