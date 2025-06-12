@@ -1,9 +1,10 @@
 import { config } from 'dotenv';
 import express from 'express';
-import connectDb from './src/database/Mongo.database.js';
-import router from './src/routes/apiRoutes.js';
+import connectDb from '../src/database/Mongo.database.js';
+import router from '../src/routes/apiRoutes.js';
 import cors from 'cors';
-import logger from "./src/middleware/logger.js"
+import logger from "../src/middleware/logger.js";
+import serverless from 'serverless-http';
 
 // Configure the path to your env files
 config({
@@ -19,7 +20,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use(router)
+app.use("/.netlify/functions/app",router);
 
 
 //logger
@@ -104,3 +105,5 @@ app.listen(port, () => {
     connectDb();
     console.log('Server is running on port '+ port);
 });
+
+export const handler = serverless(app);
