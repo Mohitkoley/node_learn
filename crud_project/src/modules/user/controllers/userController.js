@@ -5,8 +5,8 @@ import {
 
 const controllerUserLogin = async (req, res) => {
     try{
-        const user = await serviceUserLogin(req.body.email, req.body.password);
-        res.status(200).json(user);
+        const {user, token} = await serviceUserLogin(req.body.email, req.body.password);
+        res.status(200).json({user, "token": token});
     }catch(err){
         res.status(400).json({message: err.message});
     }
