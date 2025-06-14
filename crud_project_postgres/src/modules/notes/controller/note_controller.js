@@ -44,7 +44,7 @@ const deleteNote = async (req, res) => {
 const getNote = async (req, res) => {
     try{
         const noteId = req.params.noteId;
-        const note = await getNoteById(req.params.id, noteId);
+        const note = await getNoteById(noteId, noteId);
         res.status(200).json(note);
     }catch(e){
         console.error(e);
