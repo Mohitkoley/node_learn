@@ -1,12 +1,12 @@
-import jwt from 'jsonwebtoken';
 import { config } from 'dotenv';
+import jwt from 'jsonwebtoken';
 config({
     path: `./env/.${process.env.NODE_ENV}.env`
   });
 
 
 
-const auth = async (req, res, next) => {
+const Auth = async (req, res, next) => {
   try {
     const authHeader = req.header('Authorization');
 
@@ -31,4 +31,4 @@ const auth = async (req, res, next) => {
   }
 };
 
-module.exports = auth;
+ export default Auth;

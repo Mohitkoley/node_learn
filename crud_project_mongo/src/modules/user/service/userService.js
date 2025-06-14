@@ -1,8 +1,7 @@
-import mongoose  from "mongoose";
-import User from "../../../models/user.js";
 import bcrypt from "bcrypt";
 import { config } from 'dotenv';
 import jwt from 'jsonwebtoken';
+import User from "../../../models/user.js";
 config({
     path: `./env/.${process.env.NODE_ENV}.env`
   });
@@ -29,8 +28,12 @@ const serviceUserLogin =  async ( email, password) => {
 
 const serviceUserRegister = async (name, email, password) => {
 
-    const hashedPassword = bcrypt.hash(password,10 );
-    user = new User({
+    const existingUser = await User.findOne({email: email});
+    if(existingUser){
+        throw new Error("User already exists");
+    }
+    const hashedPassword = await bcrypt.hash(password,10 );
+    const user = new User({
         name: name,
         email: email,
         password: hashedPassword
@@ -40,6 +43,6 @@ const serviceUserRegister = async (name, email, password) => {
 }
 
 export {
-    serviceUserLogin, 
+    serviceUserLogin,
     serviceUserRegister
-}
+};

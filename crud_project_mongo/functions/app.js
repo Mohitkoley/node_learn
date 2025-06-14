@@ -1,10 +1,10 @@
+import cors from 'cors';
 import { config } from 'dotenv';
 import express from 'express';
-import connectDb from '../src/database/Mongo.database.js';
-import router from '../src/routes/apiRoutes.js';
-import cors from 'cors';
-import logger from "../src/middleware/logger.js";
 import serverless from 'serverless-http';
+import connectDb from '../src/database/Mongo.database.js';
+import logger from "../src/middleware/logger.js";
+import router from '../src/routes/apiRoutes.js';
 
 // Configure the path to your env files
 config({
@@ -20,7 +20,14 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use("/.netlify/functions/app",router);
+
+if(process.env.NODE_ENV == "dev"){
+  app.use(router)
+}
+else{
+  app.use("/.netlify/functions/app",router);
+}
+
 
 
 //logger
