@@ -1,0 +1,15 @@
+{
+  "name": "crud_project_postgres",
+  "version": "1.0.0",
+  "description": "crud with postgresql",
+  "license": "ISC",
+  "author": "Mohit",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "pg": "^8.16.0"
+  }
+}
