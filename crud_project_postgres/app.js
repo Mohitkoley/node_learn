@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 
 const port = process.env.PORT || 3000;
 //logger
-app.use(logger);
+// app.use(logger);
 app.listen(port, async () => {
     connectDb();
     await connectToDatabase();
