@@ -4,7 +4,7 @@ import {
     deleteNoteById,
     getAllNotesByUserId,
     getNoteById
-} from "./service/note_service";
+} from "../service/note_service.js";
 
 
 const createNote = async (req, res) => {
