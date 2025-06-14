@@ -35,6 +35,11 @@ class UserService {
         user.password = password;
         return {user, token};
     }
+
+    static async getUserById(id) {
+        const user = await User.findByPk(id);
+        return user;
+    }
 }
 
 

@@ -6,12 +6,20 @@ import {
     getNoteById,
     allNotes
 } from "../service/note_service.js";
+import 
+    UserService
+ from "../../user/service/user_service.js";
 
 
 const createNote = async (req, res) => {
     try {
-        const { title, content } = req.body;
+        
         const userId = req.params.id;
+        var user = await UserService.getUserById(userId);
+        if(!user){
+            throw new Error("User not found");
+        }
+        const { title, content } = req.body;
         const note = await createNotesService(title, content, userId);
         res.status(201).json(note);
     } catch (error) {
@@ -55,6 +63,11 @@ const getNote = async (req, res) => {
 const getNotes = async (req, res) => {
     try{
         const userId = req.params.id;
+        var user = await UserService.getUserById(userId);
+        if(!user){
+            throw new Error("User not found");
+        }
+        
         const notes = await getAllNotesByUserId(userId);
         res.status(200).json(notes);
     }catch(e){
