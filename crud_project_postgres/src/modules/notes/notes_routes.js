@@ -6,6 +6,7 @@ import {
     deleteNote,
     getNote,
     getNotes,
+    getAllNotes,
 } from "./controller/note_controller.js";
 const router = express.Router();
 
@@ -14,6 +15,8 @@ router.put('/notes/:noteId',auth, updateNote);
 router.delete('/notes/:noteId',auth, deleteNote);
 router.get('/notes/:noteId',auth, getNote);
 router.get('/notes/:id/',auth, getNotes);
+router.get('/notes',auth, getAllNotes);
+
 
 export default router;
 

@@ -64,12 +64,22 @@ const getNoteById = async (id) => {
     }
 }
 
+const allNotes = async () => {
+    try {
+        const notes = await Notes.findAll();
+        return notes;
+    } catch (error) {
+        throw error;
+    }
+}
+
 export{
     createNotesService,
     updateNoteById,
     deleteNoteById,
     getAllNotesByUserId,
-    getNoteById
+    getNoteById,
+    allNotes,
 };
 
 

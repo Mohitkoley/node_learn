@@ -3,7 +3,8 @@ import {
     updateNoteById,
     deleteNoteById,
     getAllNotesByUserId,
-    getNoteById
+    getNoteById,
+    allNotes
 } from "../service/note_service.js";
 
 
@@ -62,6 +63,19 @@ const getNotes = async (req, res) => {
     }
 }
 
+const getAllNotes = async (req, res) => {
+    try{
+        const notes = await allNotes();
+        res.status(200).json({
+            message: "notes fetched successfully",
+            notes: notes
+        });
+    }catch(e){
+        console.error(e);
+        res.status(500).json({ error: e.message });
+    }
+}
+
 
 
 export {
@@ -70,4 +84,5 @@ export {
     deleteNote,
     getNote,
     getNotes,
+    getAllNotes,
 };
