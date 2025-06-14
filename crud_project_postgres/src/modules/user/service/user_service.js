@@ -6,7 +6,7 @@ dotenv.config();
 const SECRET_KEY = process.env.SECRET_KEY;
 class UserService {
     static async registerUser(name, email, password) {
-        const existingUser = await User.findOne({email: email});
+        const existingUser = await User.findOne({ where: { email: email } });
         if(existingUser){
             throw new Error("User already exists");
         }
@@ -16,11 +16,12 @@ class UserService {
            email: email,
            password: hashedPassword
         });
-        return user;
+       user.password = password;
+       return user;
     }
 
     static async loginUser(email, password) {
-        const user = await User.findOne({email: email});
+        const user = await User.findOne({where: {email: email}});
         if(!user){
             throw new Error("User not found");
         }
@@ -30,7 +31,8 @@ class UserService {
         }
         const token = jwt.sign({ userId: user.id }, SECRET_KEY, {
             expiresIn: '365 days',
-        });    
+        });  
+        user.password = password;
         return {user, token};
     }
 }

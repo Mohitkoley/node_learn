@@ -22,7 +22,11 @@ const User = sequelize.define("User", {
     },
 }, {
     tableName: 'users',
-    timestamps: true
-  });
+    timestamps: true,
+    freezeTableName: true,
+});
+
+// Sync the model with the database to create table if it doesn't exist
+await User.sync();
 
 export default User;

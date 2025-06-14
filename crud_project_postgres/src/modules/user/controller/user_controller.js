@@ -12,6 +12,7 @@ class UserController {
                 user: user
             });
         } catch (error) {
+            console.error(error);
             res.status(error.statusCode || 400).json({
                 message: error.message,
                 error: error.name || 'Error'
@@ -22,12 +23,14 @@ class UserController {
     static async userLogin(req, res) {
         const {email, password} = req.body;
         try {
-            const user = await UserService.loginUser(email, password);
+            const {user, token} = await UserService.loginUser(email, password);
             res.status(201).json({
                 message: "User logged in successfully",
-                user: user
+                user: user,
+                token: token
             });
         } catch (error) {
+            console.error(error);
             res.status(error.statusCode || 400).json({
                 message: error.message,
                 error: error.name || 'Error'

@@ -19,7 +19,7 @@ const Notes = sequelize.define('Notes', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'Users', 
+      model: 'users', 
       key: 'id'
     },
     onDelete: 'CASCADE',
@@ -31,7 +31,10 @@ const Notes = sequelize.define('Notes', {
   },
 }, {
   tableName: 'notes',
-  timestamps: true
+  timestamps: true,
+  freezeTableName: true,
 });
+
+await Notes.sync();
 
 export default Notes;
