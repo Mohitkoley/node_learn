@@ -7,7 +7,8 @@ const {
     POSTGRES_HOST,
     POSTGRES_DB,
     POSTGRES_USER,
-    POSTGRES_PASSWORD
+    POSTGRES_PASSWORD,
+    DB_PORT
     } = process.env
 
 // Create a new Pool instance with connection details
@@ -16,7 +17,10 @@ const pool = new Pool({
     host: POSTGRES_HOST,
     database:  POSTGRES_DB,
     password: POSTGRES_PASSWORD,
-    port: 5432,
+    port: DB_PORT,
+    ssl: {
+        rejectUnauthorized: false
+      }
 });
 
 // Test the database connection

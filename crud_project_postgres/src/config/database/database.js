@@ -11,6 +11,12 @@ const sequelize = new Sequelize(
         dialect: 'postgres',
         port: process.env.DB_PORT,
         logging: false,
+        dialectOptions: {
+            ssl: {
+              require: true,             // Needed for Neon
+              rejectUnauthorized: false, // Accept self-signed certs (Neon compatible)
+            },
+        },
         pool: {
             max: 5,
             min: 0,
