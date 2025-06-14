@@ -2,7 +2,7 @@ import { config } from 'dotenv';
 import express from 'express';
 import router from './src/routes/api_routes.js';
 import {connectDb, pool} from "./src/config/database/postgres_database.js";
-import logger  from '../crud_project_mongo/src/middleware/logger.js';
+// import logger  from '../crud_project_mongo/src/middleware/logger.js';
 import cors from 'cors';
 import {connectToDatabase} from './src/config/database/database.js';
 
