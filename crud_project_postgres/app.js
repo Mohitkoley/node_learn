@@ -4,6 +4,7 @@ import router from './src/routes/api_routes.js';
 import {connectDb, pool} from "./src/config/database/postgres_database.js";
 import logger  from '../crud_project_mongo/src/middleware/logger.js';
 import cors from 'cors';
+import {connectToDatabase} from './src/config/database/database.js';
 
 var app = express();
 
@@ -15,8 +16,9 @@ app.use(cors());
 const port = process.env.PORT || 3000;
 //logger
 app.use(logger);
-app.listen(port, () => {
+app.listen(port, async () => {
     connectDb();
+    await connectToDatabase();
     console.log('Server is running on port '+ port);
 });
 
